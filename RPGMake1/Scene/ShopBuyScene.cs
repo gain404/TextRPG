@@ -13,19 +13,19 @@ namespace RPGMake1.Scene
     {
 
         bool buyitem = false;
-        Item item;
-        Status status1;
+        //Item item;
+        //Status status1;
 
-        public ShopBuyScene(Status status)
-        {
-            status1 = status;
-        }
-
-        //public void Buyshop(Item sharedItem, Status playerStatus)
+        //public ShopBuyScene(Status status)
         //{
-        //    item = sharedItem;
-        //    status1 = playerStatus;
+        //    status1 = status;
         //}
+
+        ////public void Buyshop(Item sharedItem, Status playerStatus)
+        ////{
+        ////    item = sharedItem;
+        ////    status1 = playerStatus;
+        ////}
 
         public void Buy()
         {
@@ -49,7 +49,7 @@ namespace RPGMake1.Scene
             if (int.TryParse(input, out selectIndex) && selectIndex >= 1 && selectIndex <= item.items.Count)
             {
                 ItemStruct selectedItem = item.items[selectIndex - 1];
-                BuyItem(selectedItem);
+                BuyItem(selectedItem,GameManager.Instance.Status);
             }
             else if (input == "0")
             {
@@ -65,35 +65,30 @@ namespace RPGMake1.Scene
 
         public void BuyItem(ItemStruct selectedItem, Status Playergold)
         {
-            //Status status = new Status();
-            //Item item = new Item();
-            /*var status = GameManager.Instance.Status; *///얘는 지금... Status의 값을 status에다가 복사한거라서 원본에는 아무런 변경점이 없고
-            //저 변수에만 변화가 생긴 거지
-            //todo 이 status의 값을 원본에다 다시 보내는 방법 또는
-            //원본을 참조해서 넣으라고?
-            //근데 참조가 너무 어려워
-            //getter setter 메소드 찾아보기 지금은졸려
-            //참조가 너무 어려워................
-            status1 = Playergold;
-            var item = GameManager.Instance.Item;
+
+            /*var status = GameManager.Instance.Status; */
+
+
+            //status = Playergold;
+            //var item = GameManager.Instance.Item;
 
             //구매가 가능하다면
             if (!buyitem)
             {
                 //1. 보유 금액이 충분하다면
-                if (status1.Playergold > selectedItem.itemGolds)
+                if (GameManager.Instance.Status.Playergold > selectedItem.itemGolds)
                 {
                     Console.WriteLine($"[{selectedItem.itemName}] 아이템 구매하기");
                     Console.WriteLine("구매를 완료했습니다!");
 
-                    Console.WriteLine($"{status1.Playergold} - {selectedItem.itemGolds}\n");
-                    status1.Playergold -= selectedItem.itemGolds;
-                    Console.WriteLine($"보유 재화 : {status1.Playergold}\n");
+                    Console.WriteLine($"{GameManager.Instance.Status.Playergold} - {selectedItem.itemGolds}\n");
+                    GameManager.Instance.Status.Playergold -= selectedItem.itemGolds;
+                    Console.WriteLine($"보유 재화 : {GameManager.Instance.Status.Playergold}\n");
 
                     buyitem = true;
                 }
                 //2. 보유 금액이 부족하다면
-                else if (status1.Playergold < selectedItem.itemGolds)
+                else if (GameManager.Instance.Status.Playergold < selectedItem.itemGolds)
                 {
                     Console.WriteLine("Gold가 부족합니다.");
                 }

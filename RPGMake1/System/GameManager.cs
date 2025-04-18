@@ -15,22 +15,10 @@ namespace RPGMake1.System
         public static GameManager Instance; 
         
 
+
         public GameManager()
         {
             Instance = this;
-        }
-
-        //프로퍼티로 만들기
-        //값을 캡슐화해서 마음대로 설정하고 출력할 수 있음
-        public Status Status { get; set; } //Status 클래스를 프로퍼티화 한 것 //왜?????
-        public Item Item { get; set; }
-        public ShopScene Shop { get; set; }
-        public Inventory Inventory { get; set; }
-
-        
-
-        void Gamemanager()
-        {
             Status = new Status();  //여기부터 아래까지 전부 초기화용
             Item = new Item();
             Shop = new ShopScene();
@@ -39,6 +27,13 @@ namespace RPGMake1.System
             Item.ItemList();
         }
 
+        //프로퍼티로 만들기
+        //값을 캡슐화해서 마음대로 설정하고 출력할 수 있음
+        public Status Status { get; set; } //Status 클래스를 프로퍼티화 한 것 //왜?????
+        public Item Item { get; set; }
+        public ShopScene Shop { get; set; }
+        public Inventory Inventory { get; set; }
+        
 
     }
 }

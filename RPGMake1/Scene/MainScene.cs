@@ -20,8 +20,8 @@ namespace RPGMake1.Scene
 
         public void GameStart()
         {
-            StatusScene shareData = new StatusScene(status);
-            var a = new StatusScene(status);
+            StatusScene shareData = new StatusScene();
+            var a = new StatusScene();
             var b = new Status();
 
 
